@@ -1,4 +1,4 @@
-package com.airline;
+package org.example;
 
 import java.util.*;
 
