@@ -33,6 +33,7 @@ public class Main {
         passager1.reserverVol(vol1, "R001", "2024-03-10", "Confirmée");
 
         service.afficherDestinationsPopulaires();
+        service.genererRapportStatistiques(); // ➤ Appel de la méthode bonus
     }
 }
 
@@ -299,5 +300,23 @@ class CompagnieService {
         for (Map.Entry<String, Integer> destination : listeDestinations) {
             System.out.println(destination.getKey() + " : " + destination.getValue() + " vols");
         }
+    }
+
+    public void genererRapportStatistiques() {
+        int totalVols = vols.size();
+        int totalPassagers = 0;
+        double prixParReservation = 150.0;
+        double revenus = 0;
+
+        for (Vol vol : vols) {
+            int nbReservations = vol.getReservations().size();
+            totalPassagers += nbReservations;
+            revenus += nbReservations * prixParReservation;
+        }
+
+        System.out.println("\n--- Rapport Statistique ---");
+        System.out.println("Nombre total de vols planifiés : " + totalVols);
+        System.out.println("Nombre total de passagers transportés : " + totalPassagers);
+        System.out.println("Revenus estimés générés : " + revenus + " €");
     }
 }
